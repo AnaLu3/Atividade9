@@ -1,0 +1,13 @@
+public class Main {
+    public static void main(String[] args) {
+        Validador validadorCpf = new ValidadorCpf();
+        Validador validadorNome = new ValidadorNome();
+        Validador validadorDataFuturo = new ValidadorData(true);
+        Validador validadorDataPassado = new ValidadorData(false);
+
+        System.out.println("CPF válido: " + validadorCpf.validar("123.456.789-00"));
+        System.out.println("Nome válido: " + validadorNome.validar("João Silva"));
+        System.out.println("Data futura válida: " + validadorDataFuturo.validar("31/12/2025"));
+        System.out.println("Data passada válida: " + validadorDataPassado.validar("01/01/2020"));
+    }
+}
