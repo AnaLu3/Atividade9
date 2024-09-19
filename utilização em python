@@ -1,0 +1,10 @@
+if __name__ == "__main__":
+    validador_cpf = ValidadorCpf()
+    validador_nome = ValidadorNome()
+    validador_data_futuro = ValidadorData(True)
+    validador_data_passado = ValidadorData(False)
+
+    print("CPF válido:", validador_cpf.validar("123.456.789-00"))
+    print("Nome válido:", validador_nome.validar("João Silva"))
+    print("Data futura válida:", validador_data_futuro.validar("31/12/2025"))
+    print("Data passada válida:", validador_data_passado.validar("01/01/2020"))
