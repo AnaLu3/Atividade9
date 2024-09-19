@@ -1,0 +1,27 @@
+from abc import ABC, abstractmethod
+from datetime import datetime
+
+class Validador(ABC):
+    @abstractmethod
+    def validar(self, valor):
+        pass
+
+class ValidadorCpf(Validador):
+    def validar(self, cpf):
+        return cpf is not None and bool(re.match(r'\d{3}\.\d{3}\.\d{3}-\d{2}', cpf))
+
+class ValidadorNome(Validador):
+    def validar(self, nome):
+        return nome is not None and bool(re.match(r'^[a-zA-Z\s]+$', nome))
+
+class ValidadorData(Validador):
+    def __init__(self, is_futuro):
+        self.is_futuro = is_futuro
+
+    def validar(self, data):
+        try:
+            date = datetime.strptime(data, '%d/%m/%Y')
+            now = datetime.now()
+            return date > now if self.is_futuro else date < now
+        except ValueError:
+            return False
